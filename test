@@ -4,10 +4,10 @@ import pygame
 
 def draw(screen: pygame.Surface):
     screen.fill(pygame.Color("yellow"))
-    color = pygame.Color("yellow")
-    w = int((n ** 2 * 2) ** 0.5)
-    image_orig = pygame.Surface((100, 100))
-    image_orig.set_colorkey(pygame.Color("orange"))
+    color = pygame.Color("orange")
+    w = int((1 ** 2 * 2) ** 0.5)
+    image_orig = pygame.Surface((40, 40))
+    image_orig.set_colorkey(pygame.Color("yellow"))
     image_orig.fill(color)
     # creating a copygame of orignal image for smooth rotation
     image = image_orig.copy()
@@ -15,16 +15,10 @@ def draw(screen: pygame.Surface):
     rect = image.get_rect()
     rect.center = (w // 2, w // 2)
     old_center = rect.center
-    # defining angle of the rotation
-    rot = 45
-    # rotating the orignal image
-    new_image = pygame.transform.rotate(image_orig, rot)
+    new_image = pygame.transform.rotate(image_orig, 45)
     rect = new_image.get_rect()
-    # set the rotated rectangle to the old center
     rect.center = old_center
-    # drawing the rotated rectangle to the screen
-    print(rect)
-    screen.blit(new_image, rect)
+    screen.blit(new_image, (50, 50))
     # for y in range(h // n):
     #     for x in range(w // n):
 
@@ -34,7 +28,7 @@ def draw(screen: pygame.Surface):
 
 if __name__ == "__main__":
     pygame.init()
-    n = int(input())
+    # n = int(input())
     w, h = 300, 300
     screen = pygame.display.set_mode((w, h))
     draw(screen)
