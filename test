@@ -1,0 +1,43 @@
+import random
+import pygame
+
+
+def draw(screen: pygame.Surface):
+    screen.fill(pygame.Color("yellow"))
+    color = pygame.Color("yellow")
+    w = int((n ** 2 * 2) ** 0.5)
+    image_orig = pygame.Surface((100, 100))
+    image_orig.set_colorkey(pygame.Color("orange"))
+    image_orig.fill(color)
+    # creating a copygame of orignal image for smooth rotation
+    image = image_orig.copy()
+    # define rect for placing the rectangle at the desired position
+    rect = image.get_rect()
+    rect.center = (w // 2, w // 2)
+    old_center = rect.center
+    # defining angle of the rotation
+    rot = 45
+    # rotating the orignal image
+    new_image = pygame.transform.rotate(image_orig, rot)
+    rect = new_image.get_rect()
+    # set the rotated rectangle to the old center
+    rect.center = old_center
+    # drawing the rotated rectangle to the screen
+    print(rect)
+    screen.blit(new_image, rect)
+    # for y in range(h // n):
+    #     for x in range(w // n):
+
+
+
+
+
+if __name__ == "__main__":
+    pygame.init()
+    n = int(input())
+    w, h = 300, 300
+    screen = pygame.display.set_mode((w, h))
+    draw(screen)
+    while pygame.event.wait().type != pygame.QUIT:
+        pygame.display.flip()
+    pygame.quit()
